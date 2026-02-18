@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Button } from "./ui/Button";
-import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { buttonVariants } from "./ui/Button";
+import { useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 
@@ -17,10 +17,8 @@ export function Header() {
     });
 
     return (
-        <motion.header
-            initial={{ y: -100 }}
-            animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        <header
+            className={`fixed top-0 left-0 right-0 z-50 pointer-events-auto transition-all duration-300 animate-slide-down ${isScrolled
                 ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4"
                 : "bg-transparent py-6"
                 }`}
@@ -53,8 +51,8 @@ export function Header() {
                 </nav>
 
                 <div className="hidden md:flex items-center gap-4">
-                    <Button variant="ghost" size="sm">로그인</Button>
-                    <Button size="sm">무료 체험 시작</Button>
+                    <a href="https://app.gym-agent.ai" className={buttonVariants({ variant: "ghost", size: "sm" })}>로그인</a>
+                    <a href="https://app.gym-agent.ai" className={buttonVariants({ size: "sm" })}>무료 체험 시작</a>
                 </div>
 
                 {/* Mobile Menu Toggle */}
@@ -68,11 +66,8 @@ export function Header() {
 
             {/* Mobile Nav */}
             {isMobileMenuOpen && (
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-4 flex flex-col gap-4 shadow-2xl"
+                <div
+                    className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-border p-4 flex flex-col gap-4 shadow-2xl animate-slide-down"
                 >
                     <Link
                         href="#features"
@@ -103,11 +98,11 @@ export function Header() {
                         FAQ
                     </Link>
                     <div className="flex flex-col gap-2 mt-2">
-                        <Button variant="outline" className="w-full">로그인</Button>
-                        <Button className="w-full">무료 체험 시작</Button>
+                        <a href="https://app.gym-agent.ai" className={buttonVariants({ variant: "outline", className: "w-full" })}>로그인</a>
+                        <a href="https://app.gym-agent.ai" className={buttonVariants({ className: "w-full" })}>무료 체험 시작</a>
                     </div>
-                </motion.div>
+                </div>
             )}
-        </motion.header>
+        </header>
     );
 }

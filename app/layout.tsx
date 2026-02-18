@@ -9,8 +9,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gym-agent.ai"),
   title: "LVUP - Center Operation Solution",
   description: "Data-driven center operation solution proved by 2 direct stores.",
+  openGraph: {
+    title: "LVUP - Center Operation Solution",
+    description: "Data-driven center operation solution proved by 2 direct stores.",
+    url: "https://gym-agent.ai",
+    siteName: "LVUP",
+    type: "website",
+    locale: "ko_KR",
+  },
 };
 
 export default function RootLayout({
